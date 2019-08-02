@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-City.delete_all
-City.create([
+City.first_or_create([
 	{ name: 'Medellín' },
 	{ name: 'Bogotá' },
 	{ name: 'Manizales' },
@@ -31,5 +30,4 @@ City.create([
 	{ name: 'Neiva' },
 ])
 
-Type.delete_all
-Type.create([{name: 'Virtual'}, {name: 'Presential'},])
+Type.first_or_create([{name: 'Virtual'}, {name: 'Presential'},])
