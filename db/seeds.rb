@@ -32,4 +32,4 @@ City.create([
 ])
 
 Type.delete_all
-Type.create([{name: 'Virtual'}, {name: 'Presential'}])
+Type.create([{name: 'Virtual'}, {name: 'Presential'},])
