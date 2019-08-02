@@ -30,3 +30,6 @@ City.create([
 	{ name: 'Montería' },
 	{ name: 'Neiva' },
 ])
+
+Type.delete_all
+Type.create([{name: 'Virtual'}, {name: 'Presential'}])
