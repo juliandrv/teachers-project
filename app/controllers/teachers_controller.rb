@@ -1,5 +1,8 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index]
+  before_action :is_student?, only: [:index, :show]
+  before_action :is_teacher?, only: [:update, :edit, :destroy, :show]
+  #before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
   def index
     @teachers = Teacher.all
@@ -18,8 +21,7 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     @teacher.user = current_user
-
-    current_user.update!(role: :teacher)
+    @teacher.user.update!(role: :teacher)
 
       if @teacher.save
         redirect_to teacher_path(@teacher), notice: 'Teacher was successfully created.'
@@ -51,12 +53,25 @@ class TeachersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_teacher
-      @teacher = Teacher.find(params[:id])
-    end
+    #def set_teacher
+    #  @teacher = Teacher.find(params[:id])
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require(:teacher).permit(:type_id, :name, :phone)
+    end
+
+    def is_student?
+      unless current_user.student?
+        redirect_to root_path, alert: "You don't have permissions"
+      end
+    end
+
+
+    def is_teacher?
+      unless current_user.teacher?
+        redirect_to root_path, alert: "You don't have permissions"
+      end
     end
 end

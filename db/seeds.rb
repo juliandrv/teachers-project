@@ -32,5 +32,7 @@ City.first_or_create([
 
 Type.first_or_create([{name: 'Virtual'}, {name: 'Presential'},])
 
+Topic.first_or_create([{name: 'Languaje'}, {name: 'Math'}, {name: 'Physics'}, {name: 'Chemistry'}, {name: 'Programmation'}])
+
 
 ##
