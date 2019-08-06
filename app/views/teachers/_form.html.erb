@@ -1,0 +1,38 @@
+<%= form_for @teacher, url: teachers_path, method: :post do |f| %>
+  <% if @teacher.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+
+      <ul>
+      <% @teacher.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :type %>
+    <%= f.collection_select :type_id, Type.order(:name), :id, :name, { prompt: "Select Type of Tutoring..."}, { class: "form-control", autofocus: true, required: true} %>
+    <div class="validation"></div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.number_field :phone, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :image, value: @teacher_cached_image_data %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

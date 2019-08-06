@@ -32,4 +32,5 @@ City.first_or_create([
 
 Type.first_or_create([{name: 'Virtual'}, {name: 'Presential'},])
 
+
 ##

@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :city
+  has_many :students
+  has_many :teachers
 
   after_create :set_role
   after_create :send_welcome_email
