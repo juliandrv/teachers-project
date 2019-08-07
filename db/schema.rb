@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_233249) do
+ActiveRecord::Schema.define(version: 2019_08_07_005950) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 2019_08_06_233249) do
     t.string "name"
     t.index ["type_id"], name: "index_teachers_on_type_id"
     t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
+  create_table "teachers_topics", id: false, force: :cascade do |t|
+    t.integer "teacher_id", null: false
+    t.integer "topic_id", null: false
   end
 
   create_table "topics", force: :cascade do |t|

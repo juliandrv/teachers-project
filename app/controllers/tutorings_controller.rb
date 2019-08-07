@@ -14,7 +14,7 @@ before_action :validate_student, only: [:new]
   end
 
   def create
-    end
+  end
 
   def update
   end
@@ -26,7 +26,6 @@ before_action :validate_student, only: [:new]
     def validate_student
       unless current_user.student?
         redirect_to root_path, alert: "You don't have permissions. You should be a student."
-        
       end
       
     end
