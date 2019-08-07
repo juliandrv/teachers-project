@@ -1,2 +1,35 @@
 <h1>Tutorings#new</h1>
 <p>Find me in app/views/tutorings/new.html.erb</p>
+
+<%= form_for @tutoring, url: tutorings_path, method: :post do |f| %>
+<% if @tutoring.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tutoring.errors.count, "error") %> prohibited this tutoring from being saved:</h2>
+
+      <ul>
+      <% @tutoring.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="form-group">
+    <%= f.collection_select :topic_id, Topic.order(:name), :id, :name, { prompt: "Select topic of Tutoring..."}, { class: "form-control", autofocus: true, required: true} %>
+    <div class="validation"></div>
+  </div>
+
+ <div class="form-group">
+ 	<%= f.datetime_select :when, required: true %>
+ </div>
+
+ <div class="form-group">
+ 	<%= f.text_field :where, required: true, placeholder: "Where do you whant this tutoring?" %>
+ </div>
+
+ <div class="text-center mt-3 mb-5">
+    <%#= f.submit %>
+    <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+  </div>
+ 
+<% end %>

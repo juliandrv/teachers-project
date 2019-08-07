@@ -1,8 +1,9 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
-  before_action :is_student?, only: [:index, :show]
+  before_action :authenticate_user!, only: [:index, :show]
+  #before_action :is_student?, only: [:index, :show]
   before_action :is_teacher?, only: [:update, :edit, :destroy, :show]
   #before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action find_teacher
 
   def index
     @teachers = Teacher.all

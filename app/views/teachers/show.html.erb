@@ -17,5 +17,9 @@
 
 <p><%#= image_tag @teacher.image_url %></p>
 
+<p>
+	<%= link_to "Request Tutoring" new_tutoring_path(teacher: @teacher) %>
+</p>
+
 <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
 <%= link_to 'Back', teachers_path %>

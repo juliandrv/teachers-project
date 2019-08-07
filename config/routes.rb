@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
   
-  
-  get 'tutorings/index'
-  get 'tutorings/show'
-  get 'tutorings/new'
-  get 'tutorings/edit'
-  get 'tutorings/create'
-  get 'tutorings/update'
-  get 'tutorings/destroy'
 	root "home#index"
   get 'home/index'
 	

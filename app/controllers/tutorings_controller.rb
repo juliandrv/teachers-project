@@ -1,7 +1,7 @@
 class TutoringsController < ApplicationController
-  def index
-    @tutorings = Tutoring.all
-  end
+before_action :authenticate_user!
+before_action :validate_student, only: [:new]
+
 
   def show
   end
@@ -14,22 +14,20 @@ class TutoringsController < ApplicationController
   end
 
   def create
-    @tutoring = Tutoring.new(tutoring_params)
-    @tutoring.user = current_user
-    @tutoring.user.update!(role: :tutoring)
-
-      if @tutoring.save
-        redirect_to tutoring_path(@tutoring), notice: 'Teacher was successfully created.'
-      else
-        flash[:alert] = "Teacher not saved."
-        render :new
-      end
     end
-  end
 
   def update
   end
 
   def destroy
   end
+
+  private 
+    def validate_student
+      unless current_user.student?
+        redirect_to root_path, alert: "You don't have permissions. You should be a student."
+        
+      end
+      
+    end
 end
